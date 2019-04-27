@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="av-min.js"></script>
+    <script src="tao.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="todo.css">
+    <style>
+      section {
+        display: block;
+        /* border: 1px solid black; */
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+        top: 100px;
+      }
+      input {
+        border-radius: 3px;
+        background: white;
+        border: 1px solid lightgray;
+        height: 30px;
+        width: 200px;
+      }
+      button {
+        display: block;
+        margin: 0 auto;
+        padding: 0;
+        border: 1px solid transparent;
+        outline: none;
+        background-color: #25b99a;
+        width: 205px;
+        height: 30px;
+        border-radius: 2px;
+        /* position: relative; */
+        /* top: 100px; */
+        font-size: 16px;
+        color: white;
+      }
+      a {
+        text-decoration:none;
+        color:white;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <div class="login-form">
+        username：<input id="username">
+        <br>        <br>
+
+        password：<input id="password">
+        <br>        <br>
+
+        <button id="login">login</button>
+        <br>
+
+      </div>
+      <button type="button" name="button">
+        <a href="log-out.html">log out</a>
+
+      </button>
+    </section>
+
+    <!-- <section>
+      <textarea id='message'></textarea>
+      <button id="submit">submit</button>
+      <h3>message:</h3>
+      <div class="container">
+      </div>
+    </section> -->
+  </body>
+  <script src="tao.js"></script>
+  <script type="text/javascript">
+  var APP_ID = 'EUmg2ItOynpDYKqYlnOKXjQl-9Nh9j0Va';
+  var APP_KEY = 'IG2johczx88jb0QOK8e5VHQL';
+    AV.init({
+    appId: APP_ID,
+    appKey: APP_KEY
+    });
+  </script>
+  <script type="text/javascript">
+    var bindLogin = function() {
+      var signin = e('#login')
+      bindEvent(signin, 'click', function() {
+        var username = e('#username').value;
+        var password = e('#password').value;
+        var user = new AV.User();
+        user.setUsername(username);
+        user.setPassword(password);
+        AV.User.logIn(username, password).then(function (loginedUser) {
+           // 登录成功，跳转到商品 list 页面
+           alert('login successfully')
+           log('login')
+         }, function (error) {
+           alert(JSON.stringify(error));
+           log('login error')
+         });
+      })
+    }
+    var userInfo = function () {
+      var currentUser = AV.User.current();
+      var name = currentUser.attributes.username
+      var user = e('.current-user')
+      appendHtml(user, name)
+    }
+    if (AV.User.current()) {
+      alert('please log out first')
+    } else {
+      bindLogin()
+      userInfo()
+    }
+
+    // var bindMessage = function () {
+    //   var s = e('#submit')
+    //   bindEvent(s, 'click', function() {
+    //     var m = e('#message')
+    //     log(m)
+    //     var v = m.value
+    //     log(v)
+    //     var TodoContents = AV.Object.extend('TodoContents');
+    //     var todoContents = new TodoContents();
+    //     todoContents.set('owner', AV.User.current());
+    //     todoContents.set('message', v);
+    //     todoContents.save().then(function() {
+    //       //  发布成功，跳转到商品 list 页面
+    //       log('保存成功')
+    //     }, function(error) {
+    //       alert(JSON.stringify(error));
+    //     });
+    //   })
+    // }
+    // bindMessage()
+
+  </script>
+  <script type="text/javascript">
+  // var query = new AV.Query('TodoContents');
+  // var todos = []
+  // query.find(AV.User.current().id).then(function (todos) {
+  //   // 成功获得实例
+  //   for (var i = 0; i < todos.length; i++) {
+  //     var t = todos[i].attributes.message
+  //     log(t)
+  //   }
+  //
+  // }, function (error) {
+  //   // 异常处理
+  // });
+  </script>
+  <script type="text/javascript">
+  // var todo = AV.Object.createWithoutData('TodoContents', '57328ca079bc44005c2472d0');
+  //   todo.destroy().then(function (success) {
+  //   // 删除成功
+  //   }, function (error) {
+  //   // 删除失败
+  //   });
+  </script>
+  <script type="text/javascript">
+  // var query = new AV.Query('TodoContents');
+  // var q = query.contains('message', '好吃');
+  // log('q', q.objectId)
+  </script>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>todo</title>
+    <script src="av-min.js"></script>
+    <link rel="stylesheet" href="todo.css">
+  </head>
+  <body>
+    <div class="app">
+      <div class="task">
+        <div id="title">Todo</div>
+        <div class="user">
+          <a href="login.html">login</a>
+          <a href="signup.html">sign up</a>
+          <div class="current-user">
+            User:
+          </div>
+        </div>
+        <div class="todo-form">
+          <input id="id-input-todo" class="form-control" type="text">
+          <br>
+          <span>&nbsp&nbsp&nbsp</span>
+          <span>&nbsp&nbsp&nbsp</span>
+          <span>&nbsp&nbsp&nbsp</span>
+          <span>&nbsp&nbsp&nbsp</span>
+          <span>&nbsp&nbsp&nbsp</span>
+          <span>&nbsp</span>
+          <button id="id-add-todo">Add</button>
+        </div>
+        <div class="todo-container">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="av-min.js" charset="utf-8"></script>
+  <script type="text/javascript">
+  var APP_ID = 'EUmg2ItOynpDYKqYlnOKXjQl-9Nh9j0Va';
+  var APP_KEY = 'IG2johczx88jb0QOK8e5VHQL';
+    AV.init({
+    appId: APP_ID,
+    appKey: APP_KEY
+    });
+  </script>
+  <script src="tao.js"></script>
+  <script src="todo-contents"></script>
+  <script src="todo.js"></script>
+</html>

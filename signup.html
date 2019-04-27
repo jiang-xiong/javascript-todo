@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="av-min.js"></script>
+    <!-- <link rel="stylesheet" href="todo.css"> -->
+    <style>
+    body {
+      background-color:#edf0f1;
+    }
+      section {
+        display: block;
+        /* border: 1px solid black; */
+        text-align: center;
+        position: relative;
+        top: 100px;
+        /* width: 200px; */
+        margin: 0 auto;
+      }
+      input {
+        border-radius: 3px;
+        background: white;
+        border: 1px solid lightgray;
+        height: 30px;
+        width: 200px;
+      }
+      button {
+        display: block;
+        margin: 0 auto;
+        padding: 0;
+        border: 1px solid transparent;
+        outline: none;
+        background-color: #25b99a;
+        width: 205px;
+        height: 30px;
+        border-radius: 2px;
+        /* position: relative; */
+        /* top: 100px; */
+        font-size: 16px;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <div class="signup-form">
+        username：<input id="username">
+        <br>
+        <br>
+
+        password：<input id="password">
+        <br>
+        <br>
+
+        <button id="signup">sign up</button>
+      </div>
+    </section>
+
+  </body>
+  <script src="tao.js"></script>
+  <script type="text/javascript">
+  var APP_ID = 'EUmg2ItOynpDYKqYlnOKXjQl-9Nh9j0Va';
+  var APP_KEY = 'IG2johczx88jb0QOK8e5VHQL';
+    AV.init({
+    appId: APP_ID,
+    appKey: APP_KEY
+    });
+  </script>
+  <script type="text/javascript">
+    var bindSignup = function() {
+      var signup = e('#signup')
+      bindEvent(signup, 'click', function() {
+        log('click submit')
+        var username = e('#username').value;
+        var password = e('#password').value;
+        var user = new AV.User();
+        user.setUsername(username);
+        user.setPassword(password);
+        user.signUp().then(function (loginedUser) {
+          // 注册成功，跳转到商品 list 页面
+          log('sign up sucess')
+          alert('sign up sucess')
+        }, (function (error) {
+            log(JSON.stringify(error));
+        }));
+      })
+    }
+    bindSignup()
+  </script>
+</html>

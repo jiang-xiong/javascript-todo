@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="av-min.js"></script>
+    <script src="tao.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="todo.css">
+    <style>
+      button {
+        display: block;
+        margin: 0 auto;
+        padding: 0;
+        border: 1px solid transparent;
+        outline: none;
+        background-color: #25b99a;
+        width: 150px;
+        height: 50px;
+        border-radius: 5px;
+        position: relative;
+        top: 100px;
+        font-size: 20px;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+      <button id="log-out">log out</button>
+  </body>
+  <script src="tao.js"></script>
+  <script type="text/javascript">
+    var APP_ID = 'EUmg2ItOynpDYKqYlnOKXjQl-9Nh9j0Va';
+    var APP_KEY = 'IG2johczx88jb0QOK8e5VHQL';
+
+    AV.init({
+    appId: APP_ID,
+    appKey: APP_KEY
+    });
+  </script>
+  <script type="text/javascript">
+    var bindLogOut = function() {
+      var logOut = e('#log-out')
+      bindEvent(logOut, 'click', function() {
+         AV.User.logOut().then(function (loginedUser) {
+            alert('log out')
+          }, function (error) {
+            alert(JSON.stringify(error))
+          })
+      })
+    }
+    bindLogOut()
+    var userInfo = function () {
+      var currentUser = AV.User.current();
+      var name = currentUser.attributes.username
+      var user = e('.current-user')
+      appendHtml(user, name)
+    }
+    userInfo()
+  </script>
+</html>
